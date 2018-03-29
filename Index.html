@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mensaje POS</title>
+        <link href="content/bootstrap.min.css" rel="stylesheet" /> 
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">zMessage v1.0</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="container">
+                <h2>Plugin creado para generar mensajes de consultas</h2>
+                <pre>Parametros posibles de la funcion <strong>show(title, message, icon, options)</strong> <mark>Siempre respetar el orden de los parametros</mark><br>
+el parametro <strong>options</strong> es un objeto de las siguientes posibles configuraciones (las listadas son las opciones defectos si no se especifican):
+        dialogSize: 'sm',           --** tamaño de la ventana de mensaje 'sm' y 'm'
+        buttonType: 'btn-danger',   --** clase que se puede añadir a los botones por defecto boton rojo  'btn-primary' , 'btn-primary', 'btn-warning'
+        buttonOK: true,             --** hace visible o esconde el boton OK
+        buttonCancel: true,         --** hace visible o esconde el boton cancel
+        onClickOK: null             --** funcion que se asigna al evento click del boton aceptar
+                </pre>
+                <h4>Mensaje Sin Titulo</h4>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('','Prueba mensaje')">Ejecutar</button>
+                <pre>zMessage.show('','Prueba mensaje');</pre>
+                </br>
+                <h4>Mensaje Configurado</h4>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Guardar','Esta seguro de realizar sus cambios?')">Ejecutar</button>
+                <pre>zMessage.show('Guardar','Esta seguro de realizar sus cambios?');</pre>
+                </br>
+                <h4>Configuracion de los iconos</h4>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Consulta','Esta seguro de configurar sus iconos?',1)">Icono 1</button>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('','Esta seguro de configurar sus iconos?',2)">Icono 2</button>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Consulta','Esta seguro de configurar sus iconos?',3)">Icono 3</button>
+                <pre>zMessage.show('Consulta','Esta seguro de configurar sus iconos?',1);
+zMessage.show(,'Ejemplo sin titulo y con icono tipo 2',2);
+zMessage.show('Consulta','Esta seguro de configurar sus iconos?',3);
+                </pre>
+                </br>
+                <h4>Mensaje Sin icono y ventana pequeña</h4>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Configuración','ventana sin icono',0 ,{dialogSize :'sm'})">Ejecutar</button>
+                <pre>zMessage.show('Configuración','ventana sin icono',0 ,{dialogSize :'sm'});</pre>
+                </br>   
+                <h4>Configurando Visivilidad de los botones</h4>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Configuración','Ocultar botón Aceptar',0,{buttonOK:false})">Ocultar Aceptar</button>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Configuración','Ocultar botón Cancelar',0,{buttonCancel:false})">Ocultar Cancel</button>
+                <pre>zMessage.show('Configuración','Ocultar botón Aceptar',0,{buttonOK:false});
+zMessage.show('Configuración','Ocultar botón Cancelar',0,{buttonCancel:false});
+                </pre>
+                </br>
+                <h4>Cambiando estilos a los botones</h4>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-default'})">Defecto</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-danger'})">Peligro</button>
+                <button type="button" class="btn btn-warning btn-sm" onclick="zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-warning'})">Advertencia</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-primary'})">Primario</button>
+                <pre>zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-default'});
+zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-danger'});
+zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-warning'});
+zMessage.show('Cambiar','Cambiando estilos a los botones',0,{buttonType:'btn-primary'});
+                </pre>
+                </br>
+                <h4>Ejecutar funcion al precionar OK</h4>
+                <button type="button" class="btn btn-default btn-sm" onclick="zMessage.show('Ejecutar','Esta seguro de probar la funcion?',3,{onClickOK: Confirmacion})">Ejecutar</button>
+                <pre>zMessage.show('Ejecutar','Esta seguro de probar la funcion?',3,{onClickOK: Confirmacion});</pre>
+                </br>
+                <h4>Insertando un mensaje con formato HTML</h4>
+                <button id="btnHtml" type="button" class="btn btn-default btn-sm" onclick="MensajeConHTML(1);">Ejecutar</button>
+                <button id="btnHtml" type="button" class="btn btn-default btn-sm" onclick="MensajeConHTML(2);">Ejemplo 2</button>
+                <pre>zMessage.show('Mensaje con formato', mensajeHTML,0);</pre>
+            </div>
+        </div>
+              
+        <div class="container">
+              
+            <hr>
+            <footer>
+                <p>&copy; JCZ</p>
+            </footer>
+        </div> <!-- /container -->
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/bootstrap.min.js"></script>   
+        <script src="scripts/zMessage.js"></script>  
+        <script>
+            function Confirmacion(){
+                alert('Putitos');
+            }
+            function MensajeConHTML(opt){
+                var mensaje ;
+                if (opt == 1){
+                    mensaje = "<table class='table table-striped table-hover'><thead><tr><th>#</th><th>First Name</th><th>Last Name</th><th>Username</th></tr></thead><tbody><tr><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr><td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td></tr></tbody></table>";
+                }
+                else{
+                    mensaje = "<form class='form-signin'><h2 class='form-signin-heading'>Inicio de sesión</h2><label for='inputEmail' class='sr-only'>Email address</label><input type='email' id='inputEmail' class='form-control' placeholder='Dirección de correo' required autofocus><label for='inputPassword' class='sr-only'>Password</label><input type='password' id='inputPassword' class='form-control' placeholder='Contraseña' required><div class='checkbox'><label><input type='checkbox' value='remember-me'> Recordar?</label></div><button class='btn btn-lg btn-primary btn-block' type='submit'>Ingresar</button></form>";
+                }     
+                zMessage.show('Ejecutar',mensaje,0);
+            }
+            
+        </script>
+    </body>
+</html>
