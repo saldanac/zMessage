@@ -7,10 +7,10 @@ var zMessage = zMessage || (function ($) {
         '<div class="modal zmodal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
             '<div class="modal-dialog modal-m" role="document">' +
                 '<div class="modal-content">' +
-                    '<div class="modal-header">'+
+                    '<div class="modal-header zmodal-header">'+
                         '<h4 class="zh4"></h4>'+
                     '</div>' +
-                    '<div class="modal-body">' +
+                    '<div class="modal-body zmodal-body">' +
                         '<div class="row">'+
                             '<div id="row-image">'+
                                 '<img id="image"/>' + 
@@ -20,9 +20,9 @@ var zMessage = zMessage || (function ($) {
                             '</div>'+
                         '</div>'+  
                     '</div>'+
-                '<div class="modal-footer">' + 
-                    '<button id="btnOk" onclick="zMessage.hide(this);">Aceptar</button> ' +
-                    '<button id="btnCancel" onclick="zMessage.hide(this);">Cancelar</button>' +  
+                '<div class="modal-footer zmodal-footer">' + 
+                    '<button id="btnOk" class="zbutton" onclick="zMessage.hide(this);">Aceptar</button>' +
+                    '<button id="btnCancel" class="zbutton" onclick="zMessage.hide(this);">Cancelar</button>' +  
                 '</div>' +
             '</div>' +
         '</div>'
@@ -95,7 +95,7 @@ var zMessage = zMessage || (function ($) {
 
             var settings = $.extend({
                 dialogSize: 'm',
-                buttonType: 'btn-danger',
+                buttonType: 'zbtn-danger',
                 buttonOK: true,
                 buttonCancel: true,
                 onClickOK: null,
@@ -104,28 +104,43 @@ var zMessage = zMessage || (function ($) {
 
             if(!(typeof settings.buttonType === 'undefined' || settings.buttonType === '')){
                 switch(settings.buttonType){
-                    case 'btn-primary': $dialog.find('.modal-header').attr('class', 'modal-header modal-header-primary');
+                    case 'btn-primary': 
+                        $dialog.find('.modal-header').attr('class', 'modal-header modal-header-primary');
+                        $dialog.find('.zbutton').attr('class', 'button zbutton z'+ settings.buttonType);
                     break;
-                    case 'btn-success': $dialog.find('.modal-header').attr('class', 'modal-header modal-header-success');
+                    case 'btn-success': 
+                        $dialog.find('.modal-header').attr('class', 'modal-header modal-header-success');
+                        $dialog.find('.zbutton').attr('class', 'button zbutton z'+ settings.buttonType);
                     break;
-                    case 'btn-info': $dialog.find('.modal-header').attr('class', 'modal-header modal-header-info');
+                    case 'btn-info': 
+                        $dialog.find('.modal-header').attr('class', 'modal-header modal-header-info');
+                        $dialog.find('.zbutton').attr('class', 'button zbutton z'+ settings.buttonType);
                     break;
-                    case 'btn-warning': $dialog.find('.modal-header').attr('class', 'modal-header modal-header-warning');
+                    case 'btn-warning': 
+                        $dialog.find('.modal-header').attr('class', 'modal-header modal-header-warning');
+                        $dialog.find('.zbutton').attr('class', 'button zbutton z'+ settings.buttonType);
                     break;
-                    case 'btn-danger': $dialog.find('.modal-header').attr('class', 'modal-header modal-header-danger');
+                    case 'btn-danger': 
+                        $dialog.find('.modal-header').attr('class', 'modal-header modal-header-danger');
+                        $dialog.find('.zbutton').attr('class', 'button zbutton z'+ settings.buttonType);
                     break;
-                    case 'btn-link': $dialog.find('.modal-header').attr('class', 'modal-header');
+                    case 'btn-link': 
+                        $dialog.find('.modal-header').attr('class', 'modal-header');
+                        $dialog.find('.zbutton').attr('class', 'button zbutton z'+ settings.buttonType);
                     break;
-                    case 'btn-default': $dialog.find('.modal-header').attr('class', 'modal-header');
+                    case 'btn-default': 
+                        $dialog.find('.modal-header').attr('class', 'modal-header');
+                        $dialog.find('.zbutton').attr('class', 'button zbutton '+ settings.buttonType);
                     break;
-                    default: $dialog.find('.modal-header').attr('class', 'modal-header '+ settings.buttonType);
+                    default: 
+                        $dialog.find('.modal-header').attr('class', 'modal-header '+ settings.buttonType);
+                        $dialog.find('.zbutton').attr('class', 'button zbutton '+ settings.buttonType);
                 }
             }
 
             // Configuring dialog
 
             $dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
-            $dialog.find('button').attr('class', 'button zbutton '+ settings.buttonType);
             
             $dialog.find('#btnOk').show();
             if (typeof settings.buttonOK === 'undefined' || settings.buttonOK === false) {
